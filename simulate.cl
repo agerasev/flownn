@@ -94,6 +94,7 @@ __kernel void advect(
     float2 ap = convert_float2(p) + (float2)(0.5,0.5) - C[TIME_STEP]*v.xy;
     
     float4 ac = read_imagef(color_image_src, sampler, ap);
+    //Wac = clamp(1.02f*(ac - 0.5f) + 0.5f, 0.0f, 1.0f);
     float4 av = read_imagef(velocity_image_src, sampler, ap);
     write_imagef(velocity_image_dst, p, av);
     write_imagef(color_image_dst, p, ac);
